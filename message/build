@@ -1,0 +1,8 @@
+#! /bin/bash
+
+gcc -c addresstable.c
+gcc -c bitvector.c
+gcc -c message.c
+gcc -c main.c
+gcc main.o message.o addresstable.o bitvector.o -o msgtest
+rm main.o message.o addresstable.o bitvector.o

@@ -1,0 +1,6 @@
+#! /bin/bash
+
+gcc -c addresstable.c
+gcc -c main.c 
+gcc addresstable.o main.o -o addresstest
+rm addresstable.o main.o
