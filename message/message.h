@@ -1,7 +1,10 @@
 #include <time.h>
 #include <sys/time.h>
+#include <limits.h>
 #include "bitvector.h"
 #include "addresstable.h"
+
+#define __RAND_IDX(max) (int) ((double) rand() * ( (double) max / (double) RAND_MAX ))
 
 // format of the message shared with the nodes of the network
 typedef struct message
@@ -34,3 +37,6 @@ void msg_mark( message_t* msg, int n );
 
 // check if all the nodes are visited
 int msg_all_visited( message_t* msg );
+
+// choose randomly an unvisited node, without marking the returned index within the message
+int msg_rand( message_t* msg );

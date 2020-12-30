@@ -58,3 +58,32 @@ int msg_all_visited( message_t* msg )
 {
     return bv_all_marked( &msg->vis_set );
 }
+
+// choose randomly an unvisited node, without marking the returned index in the message
+int msg_rand( message_t* msg )
+{
+    if( bv_all_marked( &msg->vis_set ) ) return -1;
+
+    const int len = iptab_len();
+    int idx[len];
+    int max = 0;
+
+    // initialize the mapping (probably useless, just for reliability of the returned value)
+    for( int k=0; k<len; k++ ) idx[k] = -1;
+
+    // search for available indices and count them
+    for( int j = 0, k=0; k<len; k++ ) 
+        if( !bv_marked( &msg->vis_set, k ) ) 
+        {
+            idx[j] = k; 
+            max++;
+            j++; 
+        }
+
+    // get the random index
+    int n = 0;
+    if( max > 1 )
+        n = __RAND_IDX( max );
+
+    return idx[n];
+}
