@@ -1,0 +1,9 @@
+#! /bin/bash
+
+gcc -c addresstable.c
+gcc -c bitvector.c
+gcc -c message.c
+gcc -c votation.c
+gcc -c main.c
+gcc main.o message.o addresstable.o bitvector.o votation.o -o votationtest
+rm main.o message.o addresstable.o bitvector.o votation.o
