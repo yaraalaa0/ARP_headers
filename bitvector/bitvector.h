@@ -1,13 +1,14 @@
+#ifndef _BITVECTOR_H_
+#define _BITVECTOR_H_
+
 #include <stdio.h>
 #include <limits.h>
+#include <stdint.h>
 
 #define RIGHT_BITMASK(var, len) { var = 0; for(int j=0; j<(len); j++) var += (1 << j); }
 #define BIT(pos) 1 << pos
 
-#define BITVECT_32BIT unsigned int
-#define BITVECT_64BIT unsigned long
-#define BITVECT_128BIT unsigned long long
-
+typedef BITVECT_64BIT uint64_t; //64bit, not depending on the machine, unsigned
 /*
 	=== BIT VECTOR ===
 */
@@ -33,3 +34,5 @@ void bv_mark( bitvector_t* bv, int pos );
 
 // check if at least one node is available
 int bv_all_marked( bitvector_t* bv );
+
+#endif
