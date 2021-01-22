@@ -1,3 +1,6 @@
+#ifndef _ADDRESSTABLE_H_
+#define _ADDRESSTABLE_H_
+
 #include <unistd.h>
 #include <stdlib.h>
 #include <limits.h>
@@ -8,10 +11,11 @@
 #define __VISITED 1
 #define __NOT_VISITED 0
 
+typedef node_id uint8_t; // essentially a char, 8bit without sign (0-255)
 // the entry of the address table
 typedef struct iptab
 {
-    char ip_addr[15];
+    char ip_addr[16]; // 16 => 15+NULL terminating character
     int visited;
 }
 iptab_addr_t;
@@ -30,16 +34,18 @@ int iptab_len();
 int iptab_unvisited_nodes();
 
 // mark a node as visited; it returns the new number of remaining nodes or -1 on error
-int iptab_mark(int n);
+int iptab_mark(node_id n);
 
 // check if a node is already marked; it returns -1 when the index isn't correct
 // return 1 is the node is marked, 0 if it is unmarked
-int iptab_visited(int n);
+int iptab_visited(node_id n);
 
 // get the IP address (as string) of a certain node
-// return NULL is the address is wrong
-char* iptab_getaddr(int n);
+// return NULL if the address is wrong
+char* iptab_getaddr(node_id n);
 
 // get randomly an unmarked node of the list
 // it returns -1 if there aren't available nodes
-int iptab_rand_idx();
+node_id iptab_rand_idx();
+
+#endif
