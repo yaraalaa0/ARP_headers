@@ -1,12 +1,11 @@
-#include "addresstable.h"
-
-#define __RAND_IDX(max) (int) ((double) rand() * ( (double) max / (double) RAND_MAX ))
+#ifndef _VOTATION_H_
+#define _VOTATION_H_
+#include "address-table/addresstable.h"
 
 // the type of the message reserved to the votation
 typedef struct votation_message
 {
-    short int counter;
-    short int node[__IP_TABLE_LEN];
+    node_id voted_node;
 }
 votation_t;
 
@@ -14,13 +13,17 @@ votation_t;
 void vote_init( votation_t* msg );
 
 /*
-    votation function: it chooses the node and write it into the message
-    note that it also modifies the counter within the message.
+    votation function: it generates a random node_id among the
+	existing ones, adds it to the previous value inserted and 
+	computes the modulo by the number of nodes (table length).
+	Since we have a sum of *len* values between 0 and *len*,
+	all modulo *len* (performing the modulo at the end or at each
+	step is mathematically equivalent, but by doing it at each step
+	we can spare space)
 */
 void vote_do_votation( votation_t* msg );
 
-// check if still there are nodes which haven't voted yet
-int vote_endVotation( votation_t* msg );
+// 
+node_id vote_getWinner( votation_t* msg );
 
-// chi ha vinto la pirofila? 
-int vote_getWinner( votation_t* msg );
+#endif _VOTATION_H_
