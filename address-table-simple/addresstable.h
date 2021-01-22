@@ -1,9 +1,14 @@
+#ifndef _ADDRESSTABLE_SIMPLE_H_
+#define _ADDRESSTABLE_SIMPLE_H_
+
 #include <unistd.h>
 #include <stdlib.h>
 #include <limits.h>
 
 #define __IP_TABLE_LEN 3
 //define __RAND_IDX(max) (int) ((double) rand() * ( (double) max / (double) INT_MAX ))
+
+typedef node_id uint8_t; // essentially a char, 8bit without sign (0-255)
 
 // the entry of the address table
 typedef struct iptab
@@ -21,4 +26,6 @@ int iptab_len();
 
 // get the IP address (as string) of a certain node
 // return NULL is the address is wrong
-char* iptab_getaddr(int n);
+char* iptab_getaddr(node_id n);
+
+#endif

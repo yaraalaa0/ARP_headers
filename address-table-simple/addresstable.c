@@ -1,4 +1,4 @@
-#include "addresstable.h"
+#include "addresstable/addresstable.h"
 
 // the IP address table
 iptab_addr_t __ip_table[ __IP_TABLE_LEN ] = 
