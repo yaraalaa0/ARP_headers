@@ -128,10 +128,11 @@ WHOLE_PROCESS:
 {
 	for(int i=0; i<OUTERLOOPS; i++){
 		INNER_VOTATION_STEP
+		MESSAGE_SEND_RAND // first iteration outside the loop, to gather whetere this node is the new TL
 		AM_I_THE_TURN_LEADER?
 		YES:
-			for(int j=0; j<INNERLOOPS; j++){
-				MESSAGE_SEND_RAND //kinda, the "am_I_the_TL" should be here, but you get the idea
+			for(int j=0; j<INNERLOOPS-1; j++){
+				MESSAGE_SEND_RAND
 				for(int k=0; k<INNERLOOPS; k++){
 					COLLECT_DATA
 				}
@@ -139,11 +140,8 @@ WHOLE_PROCESS:
 			}
 			START_VOTATION_STEP
 		NO:
-			while(!new_round){
+			for(int j=0; j<INNERLOOPS-1; j++){{
 				MESSAGE_SEND_RAND
-				if(message_read implies new_round_starting){
-					new_round = True;
-				}
 			}
 	}
 	
