@@ -73,7 +73,7 @@ For this second trip
 	active part of the net at the moment.
 - it then simply sends this message to the next *reachable* node from the table just updated.
 
-### NOTES
+#### NOTES
 
 This approach requires:
 - using "address-table.h" instead of "simple-address-table.h", modifying the "logic" behind the
