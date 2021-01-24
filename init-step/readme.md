@@ -1,9 +1,16 @@
-# INIT STEP
-here is some code to attach to the shared header regarding to the *first step* of each turn: choose the turn leader. 
-
-## ALGORITHM FOR CHOOSING THE TURN LEADER
-I'm providing to you just the basic standard tools for performing all the operations; the rest is up to you, as long as it works.
-1.  the last turn leader sends to its next node (see the table) a particular type of message with its votation; the votation step is started.
-2.  the i-th node first of all fills (using a standard function) its preference (random choice) in the votation message
-3.  then looks at the counter in the message: if the counter reaches the zero,the node sends the message to the turn leader; otherwise, the message is delivered to the (i+1)-th node which still has to notify its preference.
-4.  during the votation, the starting node waits for a message from its previous; when it receives again the message, it chooses the winner by looking at the message, and then sends the official message to this node, which becomes the actual turn leader; this node understand to be the turn leader because it sees its number in the field *turnLeader* of the message_t message.
+# INIT STEP ALGORITHM
+ring approach to the votation: the message starts from the turn leader of the previous ended turn, and goes through all the nodes in the net, in sequence with respect to the ip address table.
+*for each node*:
+1.
+the node inserts in an array its votation (the ID of the "preferred" node) using as position its ID. 
+2.
+then, it deliver the message to the next available node.
+*previous turn leader*:
+1.
+this node initializes the votation message, adds its "preference", then sends to the first available node (looking into the ip addressed table)
+2.
+then, it waits the votation message from its previous node
+3.
+for computing the winner, the node scans the array and counts the votes. The winner is the one that has received much many votes than any other else
+4.
+finally, the previous turn leader initializes an empty normal message with the value "turnLeader" containing the node ID of the new turn leader. Obviously, this step has to be performed only if the turn leader has changed; otherwise, the turn starts.

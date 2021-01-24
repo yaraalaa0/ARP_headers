@@ -1,18 +1,5 @@
-#include "arpnet/arpnet.h"
+#include "arpnet.h"
 
-/*
-	=== IP ADDRESS TABLE ===
-*/
-// the table
-char ip_table[IP_TABLE_LEN][15] = {
-	"127.0.0.1",
-	"0.0.0.0",
-	"255.255.0.255"
-}
-
-/*
-	=== SOCKET CONNECTION ===
-*/
 int sockfd;						//socket file descriptor
 struct sockaddr_in cli_addr;	//client address structure
 
@@ -65,7 +52,7 @@ int accept_client(){
    
     if (newsockfd < 0) {
          perror("ERROR on accept");
-         close(new_socket);
+         // close(new_socket);
          close(sockfd);
          exit(-1);
     }
@@ -103,7 +90,7 @@ int client_connection(char *IPaddr, int portno) {
     //setting data for socket connection
     bzero((char *) &serv_addr, sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
-    bcopy((char *) server -> h_addr, (char *)&serv_addr.sin_addr.s_addr, server -> h_length);
+    bcopy((char *) server->h_addr, (char *)&serv_addr.sin_addr.s_addr, server->h_length);
     serv_addr.sin_port = htons(portno);
     
     //connection

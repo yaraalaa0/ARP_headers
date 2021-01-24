@@ -8,12 +8,10 @@
 #define RIGHT_BITMASK(var, len) { var = 0; for(int j=0; j<(len); j++) var += (1 << j); }
 #define BIT(pos) 1 << pos
 
-typedef BITVECT_64BIT uint64_t; //64bit, not depending on the machine, unsigned
-/*
-	=== BIT VECTOR ===
-*/
+typedef uint64_t BITVECT_64BIT; //64bit, not depending on the machine, unsigned
+
 // bit vector type ( just 'int' if IP_TABLE_LEN <= 32 )
-typedef struct bitvector
+typedef struct 
 {
     int len;            /* the real lenght of the bit vector */
     BITVECT_64BIT v;     /* '1' for available nodes, '0' for visited nodes */
@@ -29,10 +27,10 @@ void bv_clear( bitvector_t* bv );
 // check if a node is marked
 int bv_marked( bitvector_t* bv, int pos );
 
-// mark a node as visited
+// mark a node
 void bv_mark( bitvector_t* bv, int pos );
 
-// check if at least one node is available
+// check if all nodes are been marked
 int bv_all_marked( bitvector_t* bv );
 
 #endif

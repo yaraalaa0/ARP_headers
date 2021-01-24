@@ -1,32 +1,24 @@
 #ifndef _ARPNET_H_
 #define _ARPNET_H_
 
-#include <time.h>
-#include <sys/time.h>
-#include <stdint.h>
-#include "/bitvector/bitvector.h"
+#include <unistd.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netinet/in.h>
 
-#define IP_TABLE_LEN 3
+/**
+ * initialize server connection without accept a client
+ */
+void server_init(int portno);
 
-typedef node_id uint8_t; // essentially a char, 8bit without sign (0-255)
-// typedef ipv4_addr uint32_t;	// an ipv4 address is composed of 4 Bytes, aka 32 bits, (unused)
-/*
-	=== IP ADDRESS TABLE ===
-*/
-// the table is an 'extern' array
-extern char ip_table[IP_TABLE_LEN][15];
+/**
+ * function to accept a client
+ **/
+int accept_client();
 
-/*
-	=== MESSAGE ===
-*/// format of the message shared with the nodes of the network
-typedef struct message
-{
-	node_id id;				/* the ID of the sender node */
-	struct timeval recvd;	/* time instant in which the sender received the previous message */
-	struct timeval sent;	/* time instant in which this message was sent */
-	node_id turnLeader;		/* the ID of the actual turn leader */
-	bitvector_t vis_set;	/* flags for visited nodes */
-}
-message_t;
+/**
+ * function to connect client to server specifying IP address and port num
+ */
+int client_connection(char *IPaddr, int portno);
 
 #endif

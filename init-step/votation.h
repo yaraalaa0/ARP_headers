@@ -26,4 +26,4 @@ void vote_do_votation( votation_t* msg );
 // 
 node_id vote_getWinner( votation_t* msg );
 
-#endif _VOTATION_H_
+#endif

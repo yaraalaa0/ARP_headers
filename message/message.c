@@ -49,10 +49,12 @@ int msg_visited( message_t* msg, node_id n )
 }
 
 // returns the number of visited nodes
-int msg_numberVisited( message_t* msg){
+int msg_numberVisited( message_t* msg)
+{
 	int n_visited = 0;
 	
-	for(node_id i=0; i<iptab_len(); i++){
+	for(node_id i=0; i<iptab_len(); i++)
+    {
 			n_visited+=msg_visited(msg, i);
 			// +1 if node 'i' has been visited, +0 else
 			// don't check for error since indexes are
@@ -87,10 +89,11 @@ node_id msg_rand( message_t* msg )
     for( int k=0; k<len; k++ ) idx[k] = -1;
 
     // search for available indices and count them
+    // EDIT: now it is checked if the node is available
     for( int j = 0, k=0; k<len; k++ ) 
-        if( !bv_marked( &msg->vis_set, k ) ) 
+        if( !bv_marked( &msg->vis_set, k ) && iptab_is_available( k ) ) 
         {
-            idx[j] = (node_id)k; 
+            idx[j] = (node_id) k; 
             max++;
             j++; 
         }
@@ -99,7 +102,6 @@ node_id msg_rand( message_t* msg )
     int n = 0;
     if( max > 1 )
         n = rdmindex(0, len);
-		//n = __RAND_IDX( max );
 
     return idx[n];
 }
