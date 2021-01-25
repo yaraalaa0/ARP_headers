@@ -8,6 +8,8 @@ iptab_addr_t __ip_table[ __IP_TABLE_LEN ] =
     { "255.255.0.255", __NOD_AVAILABLE },
 };
 
+int __ip_table_available_nodes = __IP_TABLE_LEN;
+
 // ------------------------
 //  BASIC OPERATIONS
 // ------------------------
@@ -74,6 +76,12 @@ node_id iptab_get_prev( node_id my )
 //  OPS ON "AVAILABLE" FLAG
 // ------------------------
 
+// get how many addresses are available in the table
+int iptab_len_av()
+{
+    return __ip_table_available_nodes;
+}
+
 // check if a node is available (0 if it is not)
 int iptab_is_available(node_id n)
 {
@@ -91,6 +99,7 @@ int iptab_set_unavailable(node_id n)
         return -1;
     
     __ip_table[n].ip_avail = __NOD_NOT_AVAILABLE;
+    __ip_table_available_nodes--;
 
     return 0;
 }
@@ -103,6 +112,7 @@ int iptab_set_available(node_id n)
         return -1;
     
     __ip_table[n].ip_avail = __NOD_AVAILABLE;
+    __ip_table_available_nodes++;
 
     return 0;
 }
@@ -112,4 +122,6 @@ void iptab_reset_flags()
 {
     for( int i=0; i<__IP_TABLE_LEN; i++ )
         __ip_table[i].ip_avail = __NOD_AVAILABLE;
+
+    __ip_table_available_nodes = __IP_TABLE_LEN;
 }

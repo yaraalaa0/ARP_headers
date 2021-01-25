@@ -1,4 +1,4 @@
-#include "bitvector/bitvector.h"
+#include "bitvector.h"
 
 // inizialization of the bit vector
 int bv_init( bitvector_t* bv, int len )

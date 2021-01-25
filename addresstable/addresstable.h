@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
-//include <limits.h>
 
 #define __IP_TABLE_LEN 3
 
@@ -30,6 +29,9 @@ iptab_addr_t;
 // the table is an 'extern' array of (string) IP addresses
 extern iptab_addr_t __ip_table[ __IP_TABLE_LEN ];
 
+// the number of available nodes
+extern int __ip_table_available_nodes;
+
 // get the total lenght of the table
 int iptab_len();
 
@@ -49,6 +51,9 @@ node_id iptab_get_prev( node_id my );
 // ------------------------
 //  OPS ON "AVAILABLE" FLAG
 // ------------------------
+
+// get how many addresses are available in the table
+int iptab_len_av();
 
 // check if a node is available (0 if it is not)
 int iptab_is_available(node_id n);
