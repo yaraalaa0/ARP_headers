@@ -1,26 +1,17 @@
 #include "random_index.h"
 
-//Take a look at the link shared on Trello on this topic to better understand motivations and implementation
+// Take a look at the link shared on Trello on this topic to better 
+// understand motivations and implementation
 
-//We split the range of random numbers from rand() into equally large "chunks" and depending on which chunk we "land in" we determine the outcome. 
-//In the general case there will be some slack at the end of the range as the chunk size doesn't evenly divide the range, 
-//if we roll a value in the slack we just roll again:
 int rdmindex(int min , int max)
 {
-      //if we have 30 nodes , min in 0 max is 29. The function at the end will return an integer in the range 0-29
-      int range = max - min +1;
+    //if we have 30 nodes , min in 0 max is 29. The function at the end will return an integer in the range 0-29
+	int range = max - min +1;
+	int r;
+	// this piece discards values of 'r' which would cause non-uniformity in
+	// the subsequent 'modulo' operation (since RAND_MAX is generally not abort
+	// multiple of our required range.
+	while( (r = rand()) > RAND_MAX - (RAND_MAX - (range-1) )%range ){}
       
-      // int chunkSize= (RAND_MAX + 1) / range; // OVERFLOW is possible
-      int chunkSize = RAND_MAX / range;
-      int endOfLastChunk=chunkSize * range;
-      
-      int r = rand();
-      //this while is the reroll part , when the value is in a slack
-      //the reroll takes care of the bias
-      //probability of rerolling is:    range / (RAND_MAX + 1) 
-      while(r >= endOfLastChunk)
-      {
-            r = rand();
-      }
-      return min + r / chunkSize;
+	return min + r%range;
 }
