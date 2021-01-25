@@ -1,4 +1,6 @@
 #include "handshake.h"
+#include "bitvector.h"
+#include "addresstable.h"
 
 //--------------------------------------
 //  UTILS FOR STARTING HANDSHAKE

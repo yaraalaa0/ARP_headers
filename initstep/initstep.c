@@ -1,4 +1,3 @@
-
 #include "initstep.h"
 
 /* (starting node) initialization of the votation message

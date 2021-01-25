@@ -2,8 +2,10 @@
 #define _HANDSHAKE_H_
 
 #include <string.h>
-#include "../bitvector/bitvector.h"
-#include "../addresstable/addresstable.h"
+//#include "../bitvector/bitvector.h"
+//#include "../addresstable/addresstable.h"
+#include "bitvector.h"
+#include "addresstable.h"
 #include "version.h"
 
 #define __HS_START_NODE_ID 0

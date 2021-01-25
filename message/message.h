@@ -7,8 +7,6 @@
 #include "../addresstable/addresstable.h"
 #include "../misc/random_index.h"
 
-//define __RAND_IDX(max) (int) ((double) rand() * ( (double) max / (double) RAND_MAX ))
-
 // format of the message shared with the nodes of the network
 typedef struct message
 {
