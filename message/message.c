@@ -1,5 +1,4 @@
-#include "message/message.h"
-#include "misc/random_index.h"
+#include "message.h"
 
 // initialize the message
 void msg_init( message_t* msg )

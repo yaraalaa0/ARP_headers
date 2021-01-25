@@ -1,0 +1,21 @@
+#! /bin/bash
+
+# You can obtain the objects files you need simply running this script.
+# for using the shared header in your project, just import 
+# on 'arpnet.h' header file
+
+gcc 1.o 2.o 3.o 4.o 5.o 6.o
+
+clear
+
+gcc -c misc/random_index.c -o 1
+gcc -c bitvector/bitvector.c -o 2
+gcc -c addresstable/addresstable.c -o 3
+gcc -c handshake/handshake.c -o 4
+gcc -c initstep/initstep.c -o 5
+gcc -c message/message.c -o 6
+
+linkcode = "1.o 2.o 3.o 4.o 5.o 6.o"
+
+#compile with 
+# gcc $linkcode <your_programs> -o <your_program_name>

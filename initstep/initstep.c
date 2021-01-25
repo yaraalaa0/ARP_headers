@@ -1,6 +1,5 @@
 
-#include "init-step/votation.h"
-#include "misc/random_index.h"
+#include "initstep.h"
 
 /* (starting node) initialization of the votation message
 	simply put the 0 node as the voted one, the node calling
