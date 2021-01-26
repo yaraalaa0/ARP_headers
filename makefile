@@ -3,7 +3,7 @@ SUBDIRS = addresstable misc bitvector connection handshake initstep message
 # VPATH := $(patsubst %, %:, $(SUBDIRS))
 DEP_OBJ := $(foreach dir, $(SUBDIRS), $(wildcard $(dir)/*.o))
 
-all: arpnet.a
+all: libarpnet.a
 	@echo static library compiled
 
 .PHONY: subdirs $(SUBDIRS) clean all
@@ -13,7 +13,7 @@ subdirs: $(SUBDIRS)
 $(SUBDIRS):
 	+$(MAKE) -s -C $@
 
-arpnet.a: $(SUBDIRS) $(DEP_OBJ)
+libarpnet.a: $(SUBDIRS) $(DEP_OBJ)
 	ar rc $@ $(DEP_OBJ)
 	ranlib $@
 	
