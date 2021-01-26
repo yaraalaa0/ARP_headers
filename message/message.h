@@ -3,11 +3,9 @@
 
 #include <time.h>
 #include <sys/time.h>
-#include <limits.h>
-#include "bitvector/bitvector.h"
-#include "addresstable/addresstable.h"
-
-#define __RAND_IDX(max) (int) ((double) rand() * ( (double) max / (double) RAND_MAX ))
+#include "../bitvector/bitvector.h"
+#include "../addresstable/addresstable.h"
+#include "../misc/random_index.h"
 
 // format of the message shared with the nodes of the network
 typedef struct message

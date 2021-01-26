@@ -1,29 +1,5 @@
-<<<<<<< HEAD:arpnet/arpnet.c
-<<<<<<< Updated upstream
-#include "arpnet/arpnet.h"
-
-/*
-	=== IP ADDRESS TABLE ===
-*/
-// the table
-char ip_table[IP_TABLE_LEN][15] = {
-	"127.0.0.1",
-	"0.0.0.0",
-	"255.255.0.255"
-}
-
-/*
-	=== SOCKET CONNECTION ===
-*/
-int sockfd;						//socket file descriptor
-struct sockaddr_in cli_addr;	//client address structure
-=======
-#include "arpnet.h"
 #include <string.h>
->>>>>>> Stashed changes
-=======
 #include "connection.h"
->>>>>>> Ganci:connection/connection.c
 
 /**
  * initialize server connection without accept a client
