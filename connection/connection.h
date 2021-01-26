@@ -1,10 +1,14 @@
-#ifndef _ARPNET_H_
-#define _ARPNET_H_
+#ifndef _CONNECTION_H_
+#define _CONNECTION_H_
 
 #include <unistd.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netinet/in.h>
+#include <netdb.h>
+#include <stdio.h>
+#include <errno.h>
+#include <string.h>
 
 /**********************************************//**
 * Initializing the main socket in a server code.
@@ -46,7 +50,7 @@ int server_init(int portno);
 *		otherwise the error code associated with
 *		the accept() failed call;
 **************************************************/
-int accept_client(int sockfd, struct sockaddr_in cli_addr);
+int accept_client(int sockfd, struct sockaddr_in* cli_addr);
 
 
 /**********************************************//**

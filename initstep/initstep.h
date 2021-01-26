@@ -1,6 +1,7 @@
 #ifndef _VOTATION_H_
 #define _VOTATION_H_
-#include "address-table/addresstable.h"
+#include "../addresstable/addresstable.h"
+#include "../misc/random_index.h"
 
 // the type of the message reserved to the votation
 typedef struct votation_message
@@ -26,4 +27,4 @@ void vote_do_votation( votation_t* msg );
 // 
 node_id vote_getWinner( votation_t* msg );
 
-#endif _VOTATION_H_
+#endif

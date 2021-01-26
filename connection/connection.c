@@ -1,3 +1,4 @@
+<<<<<<< HEAD:arpnet/arpnet.c
 <<<<<<< Updated upstream
 #include "arpnet/arpnet.h"
 
@@ -20,6 +21,9 @@ struct sockaddr_in cli_addr;	//client address structure
 #include "arpnet.h"
 #include <string.h>
 >>>>>>> Stashed changes
+=======
+#include "connection.h"
+>>>>>>> Ganci:connection/connection.c
 
 /**
  * initialize server connection without accept a client
