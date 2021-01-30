@@ -26,6 +26,11 @@ int bv_marked( bitvector_t* bv, int pos )
     if( pos < 0 ) return -1;
     if( pos >= bv->len ) return -1;
 
+    // example
+    // pos 4
+    // 1000 <- bit
+    // 1111 <- bit vector
+    // 1000
     unsigned int bit = BIT( pos );
     if( ( bit & bv->v ) == 0 )
         return 1;

@@ -1,6 +1,0 @@
-#! /bin/bash
-
-gcc -c bitvector.c
-gcc -c main.c
-gcc main.o bitvector.o -o bitvect
-rm main.o bitvector.o
