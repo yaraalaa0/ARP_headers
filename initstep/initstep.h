@@ -10,21 +10,49 @@ typedef struct votation_message
 }
 votation_t;
 
-// (starting node) initialization of the votation message
+
+
+
+/**********************************************//**
+* Function to initialize the votation message. 
+* This function should be called only by the starting node (previous turn leader)
+* then this node should call vote_do_votation function immediately after to insert its choice
+*
+* Arguments
+*	msg - pointer to the votation message of type votation_t
+*
+**************************************************/
 void vote_init( votation_t* msg );
 
-/*
-    votation function: it generates a random node_id among the
-	existing ones, adds it to the previous value inserted and 
-	computes the modulo by the number of nodes (table length).
-	Since we have a sum of *len* values between 0 and *len*,
-	all modulo *len* (performing the modulo at the end or at each
-	step is mathematically equivalent, but by doing it at each step
-	we can spare space)
-*/
+
+
+
+/**********************************************//**
+* votation function
+* This function should be called by each node for making the votation
+* It chooses randomly a node id and adds its choice to the votation message
+*
+* Arguments
+*	msg - pointer to the votation message of type votation_t
+*
+**************************************************/
 void vote_do_votation( votation_t* msg );
 
-// 
+
+
+
+
+/**********************************************//**
+* Function to get the winner of the votation cycle
+* This function should be called only in the end of the votation cycle by the starting node (previous turn leader)
+* then this node should notify the winner
+*
+* Arguments
+*	msg - pointer to the votation message of type votation_t
+*
+* Return
+*       the node_id of the winner node (the next turn leader)
+**************************************************/
 node_id vote_getWinner( votation_t* msg );
 
 #endif
