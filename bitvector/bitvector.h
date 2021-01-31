@@ -23,8 +23,8 @@
 *   pos - Shifting position 
 *
 * Return
-* The function returns the bit 1 shifted to left of
-* pos positions;
+*   The function returns the bit 1 shifted to left of
+*   pos positions;
 **************************************************/
 #define BIT(pos) 1 << pos
 
@@ -52,10 +52,11 @@ bitvector_t;
 *   len - Length of the bitvector
 *
 * Return
-* The function returns -1 if an error occurs,
-* len is a negative number or bv is NULL.
-* It returns 0 if the bitvector and its length
-* are correctly set.
+*   The function returns -1 if an error occurs,
+*   len is a negative number or bv is NULL.
+*   It returns 0 if the bitvector and its length
+*   are correctly set.
+*
 **************************************************/
 int bv_init( bitvector_t* bv, int len );
 
@@ -88,11 +89,12 @@ void bv_clear( bitvector_t* bv );
 *   pos - Node number
 *
 * Return
-* The function returns -1 if an error occurs,
-* pos is a negative number or is greater than the
-* lenght of the bitvector
-* It returns 0 if the node is been already visited
-* and returns 1 if the node isn't visited yet.
+*   The function returns -1 if an error occurs,
+*   pos is a negative number or is greater than the
+*   lenght of the bitvector
+*   It returns 0 if the node is been already visited
+*   and returns 1 if the node isn't visited yet.
+*
 **************************************************/
 int bv_marked( bitvector_t* bv, int pos );
 
@@ -123,8 +125,9 @@ void bv_mark( bitvector_t* bv, int pos );
 *   bv - Bitvector to mark the node
 *
 * Return
-* The function returns 1 if all bit are marked and
-* 0 if there is at least one bit not marked.
+*   The function returns 1 if all bit are marked and
+*   0 if there is at least one bit not marked.
+*
 **************************************************/
 int bv_all_marked( bitvector_t* bv );
 
