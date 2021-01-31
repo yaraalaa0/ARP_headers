@@ -122,7 +122,6 @@ void msg_mark( message_t* msg, node_id n );
 int msg_all_visited( message_t* msg );
 
 
-
 /****************************************************************************
 * Choose randomly an unvisited node, without marking the returned index within the message.
 *
