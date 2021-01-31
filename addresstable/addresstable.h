@@ -32,41 +32,147 @@ extern iptab_addr_t __ip_table[ __IP_TABLE_LEN ];
 // the number of available nodes
 extern int __ip_table_available_nodes;
 
-// get the total lenght of the table
+/****************************************************************************
+* get the total lenght of the table
+*
+* Return
+*	  __IP_TABLE_LEN - It's the length of the IP_table,
+                       the total number of nodes;
+*****************************************************************************/
 int iptab_len();
 
-// get the IP address (as string) of a certain node
-// return NULL is the address is wrong or the node is no longer available
+
+/****************************************************************************
+* Return the IP address (as string) of a specified node.
+*
+* Inside this function there is a check on n, if it's greater than the IP_table 
+* size or if the version of header is not the last released, the function return NULL.
+*
+* Arguments
+*	n - Id number of a node;
+*
+* Return
+*	__ip_table[n].ip_addr - The IP address of the specified node as string, or NULL
+                            if the version is not the last released ;
+****************************************************************************/
 char* iptab_getaddr(node_id n);
 
-// get the ID of a certain node given its IP address
+
+/****************************************************************************
+* Return the ID of a certain node given its IP address.
+*
+* Inside this function there is a research in the IP_table to find the correspondent
+* ID of the node, the there is a chek on this number to control that the node has the 
+* last header version released, if it's correct return the ID otherwise -1.
+*
+* Arguments
+*	ip - IP address of a node;
+*
+* Return
+*	res - The ID of the node, or -1 if the node has not the last released version;
+****************************************************************************/
 int iptab_get_ID_of(char* ip);
 
-// get the ID of the next available node in the table (in order)
+
+
+/****************************************************************************
+* Return the ID of the next available node(growing order) in the IP_table.
+*
+* Arguments
+*	my - ID of the current node;
+*
+* Return
+*	n - The ID of the next node;
+****************************************************************************/
 node_id iptab_get_next( node_id my );
 
+
+
 // get the ID of the previous node in the table (in order)
+/****************************************************************************
+* Return the ID of the previous available node(growing order) in the IP_table.
+*
+* Arguments
+*	my - ID of the current node;
+*
+* Return
+*	n - The ID of the previous node;
+****************************************************************************/
 node_id iptab_get_prev( node_id my );
+
+
 
 // ------------------------
 //  OPS ON "AVAILABLE" FLAG
 // ------------------------
 
-// get how many addresses are available in the table
+/****************************************************************************
+* Return the number of available addresses in the IP_table.
+*
+* Return
+*	__ip_table_available_nodes - Number of available addresses in the IP_table;
+****************************************************************************/
 int iptab_len_av();
 
-// check if a node is available (0 if it is not)
+
+/****************************************************************************
+* Check if the IP address of a given node is available.
+*
+* Inside the function there is a check on the ID of node passed, it should be a   
+* positive number greater than zero and lower than the IP_table length.
+*
+* Arguments
+*	 n - ID of a node;
+*
+* Return
+*	 1 - if the IP address correspondent to the given ID of the node is available;
+*    0 - otherwise
+****************************************************************************/
 int iptab_is_available(node_id n);
 
-// mark a node as unavailable
-// 0 is returned if the operation is done
+
+/****************************************************************************
+* Set unavailable the IP address correspondent to the given ID of the node 
+*
+* Inside the function there is a check on the ID of node passed, it should be a   
+* positive number greater than zero and lower than the IP_table length.
+* Set the correspondent IP address unavailable and decrement the number of available
+* IP addresses.
+*
+* Arguments
+*	 n - ID of a node;
+*
+* Return
+*	 0 - correspondent IP address set unavailable;
+*    -1 - if the passed n is not valid to identify a node
+****************************************************************************/
 int iptab_set_unavailable(node_id n);
 
-// set the node as available
-// 0 is returned if the operation is done
+
+/****************************************************************************
+* Set available the IP address correspondent to the given ID of the node 
+*
+* Inside the function there is a check on the ID of node passed, it should be a   
+* positive number greater than zero and lower than the IP_table length.
+* Set the correspondent IP address available and increment the number of available
+* IP addresses.
+*
+* Arguments
+*	 n - ID of a node;
+*
+* Return
+*	 0 - correspondent IP address set available;
+*    -1 - if the passed n is not valid to identify a node
+****************************************************************************/
 int iptab_set_available(node_id n);
 
-// reset all the flags "available" as "not" (default state)
+
+/****************************************************************************
+* Set all IP addresses at default status "available" 
+*
+* Inside the function all IP addresses are set to "available" and the number 
+* of total available nodes is set to the total amount of Ip addresses in the IP_table
+****************************************************************************/
 void iptab_reset_flags();
 
 #endif
