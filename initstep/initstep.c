@@ -10,9 +10,14 @@ void vote_init( votation_t* msg )
     msg->voted_node = 0;
 }
 
-/*
-    votation function: it chooses the node and write it into the message
-    note that it also modifies the counter within the message.
+
+/* votation function: it generates a random node_id among the
+	existing ones, adds it to the previous value inserted and 
+	computes the modulo by the number of nodes (table length).
+	Since we have a sum of *len* values between 0 and *len*,
+	all modulo *len* (performing the modulo at the end or at each
+	step is mathematically equivalent, but by doing it at each step
+	we can spare space)
 */
 void vote_do_votation( votation_t* msg )
 {
