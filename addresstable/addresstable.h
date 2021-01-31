@@ -16,9 +16,8 @@ typedef uint8_t node_id; // essentially a char, 8bit without sign (0-255)
 // the entry of the address table
 typedef struct iptab
 {
-    char ip_addr[15];
-    short ip_avail;
-    // other infos?
+    char ip_addr[15];     // IP address as cahr vector
+    short ip_avail;       // 1 if IP address is available for connection
 }
 iptab_addr_t;
 
